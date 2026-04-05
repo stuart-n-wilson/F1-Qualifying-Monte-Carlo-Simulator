@@ -1,4 +1,4 @@
-# F1-Qualifying-Monte-Carlo
+# F1 Qualifying Simulator App
 
 
 ### V1
