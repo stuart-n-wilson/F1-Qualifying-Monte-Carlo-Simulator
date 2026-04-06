@@ -38,6 +38,7 @@ n = st.number_input("Monte Carlo simulations", min_value=1, max_value=5000, valu
 st.divider()
 
 st.subheader("Run the simulation")
+st.info("It might take a while, the icon in the top right will show that it is running...")
 
 # Run simulation ---
 if st.button("Run"):
