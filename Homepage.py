@@ -57,7 +57,7 @@ st.markdown("- Lap times are normally distributed.")
 st.markdown("- Limited to 2018 onwards as previous data is unavailable.")
 st.markdown("- Drivers who progressed into a session in a simulation that they did not reach in real life are given an averaged improved lap from the previous session.")
 st.markdown("- Assumes independence between laps.")
-st.markdown("- No external factors (weather, track evolution etc) are considered.)
+st.markdown("- No external factors (weather, track evolution etc) are considered.")
 st.divider()
 
 st.subheader("About")
