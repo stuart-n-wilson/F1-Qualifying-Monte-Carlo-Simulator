@@ -36,7 +36,9 @@ Key features:
 - Using position counts and the number of simulations, probabilities are calculated for every position for every driver, compiled in a dataframe.
 
 ### The visualisations
-- 
+- A heatmap of probabilities is generated from the probabilities dataframe.
+- The user can choose a position, or driver to focus on, and then probability distributions are generated accordingly.
+- Each plot automatically assigns team colours to drivers.
 
 ---
 
