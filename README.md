@@ -14,11 +14,11 @@ This application uses Monte Carlo simulation and real F1 data to model Formula 1
 
 ## 🎯 Motivation
 
-This project was built to explore how Monte Carlo simulation can be applied to real-world sports data, combining statistical modelling with domain knowledge of Formula 1.
+This project was built to explore how Monte Carlo simulation (and a good chunk of domain knowledge) can be applied to real world Formula 1 data.
 
 It demonstrates:
 - probabilistic modelling
-- simulation of multi-stage processes
+- multi-stage simulation
 - building interactive data applications
 
 ---
