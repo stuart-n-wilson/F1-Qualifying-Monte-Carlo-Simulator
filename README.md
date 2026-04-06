@@ -17,7 +17,15 @@ Key features:
 
 ---
 
-## ⚙️ Technical aspects
+## ⚙️ How it works
+
+- With each session of qualifying (Q1, Q2, Q3), a normal distribution is modelled from the driver's real lap times.
+- If a driver did not take part in a session, and infite lap time is generated for them.
+- The average number of laps (n) for that session is then calculated, and a Monte Carlo simulation run with n samples from the driver's lap distribution.
+- For Q1, the top 15 (or 16 in 2026, it automatically adjust) drivers progress into Q2, with the eliminated drivers' positions fixed.
+- Q2 lap times are generated in the same was as Q1.
+- For drivers who did not make it into that session in real life but did in the simulation, an average time delta between sessions is calculated (only using the real times), and then applied to their previous session lap time.
+- 
 
 ---
 
