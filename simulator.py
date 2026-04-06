@@ -1,7 +1,5 @@
 import pandas as pd
 import numpy as np
-import fastf1 as f1
-import datetime as dt
 
 def create_driver_session_stats(session):
     '''
