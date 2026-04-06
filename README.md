@@ -1,5 +1,7 @@
 # 🏎️ F1 Qualifying Simulator Application
 
+![Python](https://img.shields.io/badge/Python-blue)
+
 An app that uses Monte Carlo Simulation to simulate F1 Qualifying sessions. Try it out [**here**](https://f1-qualifying-monte-carlo-simulator.streamlit.app/Qualifying_simulator).
 
 ---
@@ -15,6 +17,10 @@ Key features:
 
 ---
 
+## ⚙️ Technical aspects
+
+---
+
 ## 📂 Application Structure
 
 ```
@@ -27,3 +33,19 @@ F1-Qualifying-Monte-Carlo-Simulator/
 ├── simulator.py                  # Qualifying simulation functions
 └── README.md
 ```
+
+---
+
+## 📝 Limitations/assumptions
+
+- Lap times are normally distributed.
+- Limited to 2018 onwards as previous data is unavailable.
+
+---
+
+## ▶️ How to Run
+
+Try the application live [**here**](https://f1-qualifying-monte-carlo-simulator.streamlit.app/Qualifying_simulator), or
+
+1. Download all the files and keep the same folder structure.
+2. Open a terminal and type `streamlit run Homepage.py` to run the app locally.
