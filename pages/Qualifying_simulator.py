@@ -6,13 +6,9 @@ from datetime import datetime as dt
 from simulator import monte_carlo_qualifying, simulate_grid
 from plotting import position_probability_plot, expected_position, create_heatmap
 from analysis import compare_grid
-import os
 
 f1.set_log_level('ERROR')
 
-# Enable cache at module level
-os.makedirs("/tmp/fastf1_cache", exist_ok=True) # AI
-f1.Cache.enable_cache("/tmp/fastf1_cache") # AI
 
 # Title section ---
 st.title('F1 Qualifying Position Simulator')
@@ -27,22 +23,13 @@ year = st.slider("Year", min_value=2018, max_value=dt.now().year, value=2026)
 gp = st.selectbox("Grand Prix", f1.get_event_schedule(year, include_testing=False).loc[lambda df: df["EventDate"] <= pd.Timestamp.today(), "EventName"].to_list())
 
 
-
-#@st.cache_resource(show_spinner="Downloading the data...")
-#def load_session(year, gp):
- #   f1.set_log_level('ERROR')
-  #  session = f1.get_session(year, gp, 'Q')
-   # session.load()
-    #return session
-
-
 # Load session and cache ---
-#@st.cache_resource(show_spinner="Downloading the data...")
-#def load_session(year, gp):
- #   f1.set_log_level('ERROR')
-  #  session = f1.get_session(year, gp, 'Q')
-   # session.load()
-    #return session
+@st.cache_resource(show_spinner="Downloading the data...")
+def load_session(year, gp):
+    f1.set_log_level('ERROR')
+    session = f1.get_session(year, gp, 'Q')
+    session.load()
+    return session
 
 session = load_session(year, gp)
 
@@ -56,18 +43,10 @@ st.subheader("Run the simulation")
 # Run simulation ---
 if st.button("Run"):
     with st.spinner("Running the simulation..."):
-        # Reload fresh session on every run — don't rely on cached object
-        fresh_session = f1.get_session(year, gp, 'Q')
-        fresh_session.load()
-        st.session_state.df = monte_carlo_qualifying(fresh_session, n)
+        st.session_state.df = monte_carlo_qualifying(session, n)
         st.session_state.n = n
         st.session_state.run_year = year
         st.session_state.run_gp = gp
-    
-        # Temporary debug - remove after testing
-        st.write("Laps loaded:", len(fresh_session.laps))
-        st.write("Results loaded:", len(fresh_session.results))
-        st.stop()
 
 st.divider()
 
