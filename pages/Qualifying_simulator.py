@@ -56,7 +56,10 @@ st.subheader("Run the simulation")
 # Run simulation ---
 if st.button("Run"):
     with st.spinner("Running the simulation..."):
-        st.session_state.df = monte_carlo_qualifying(session, n)
+        # Reload fresh session on every run — don't rely on cached object
+        fresh_session = f1.get_session(year, gp, 'Q')
+        fresh_session.load()
+        st.session_state.df = monte_carlo_qualifying(fresh_session, n)
         st.session_state.n = n
         st.session_state.run_year = year
         st.session_state.run_gp = gp
