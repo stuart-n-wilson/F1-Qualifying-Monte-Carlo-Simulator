@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from scipy.optimize import linear_sum_assignment
 
 def create_driver_session_stats(session):
     '''
@@ -122,7 +123,7 @@ def simulate_session(q_stats):
 
 def simulate_qualifying(session):
     '''
-    Input: session:
+    Input: session.
 
     Simulates each stage of qualifying with eliminations.
 
@@ -178,9 +179,12 @@ def qualifying_MC(session, n=500):
     return position_counts
 
 def get_position_probability(position_counts, n=500):
-    '''
-    Takes position counts in and returns counts as probabilities.
-    '''
+    """
+    Input: positions counts.
+
+    Output: positions probabilities.
+    """
+
     position_probabilities = {}
 
     for driver, positions in position_counts.items():
@@ -208,3 +212,33 @@ def monte_carlo_qualifying(session, n=500):
     df = df.reindex(sorted(df.columns), axis=1)
 
     return df
+
+def simulate_grid(df):
+    """
+    Input: df is output from monte_carlo_qualifying().
+
+    Uses Hungarian algorithm to maximise likelihood of full grid order by minimising cost.
+    Zero probabilities are converted to 1e-6 to prevent log(0).
+
+    Output: dataframe with driver abbreviation, as index, and grid position.
+    """
+    # Replace 0 with 1e-6
+    df_no_zero = df.replace(0, 1e-6)
+
+    # Log transform probabilities and make negative to convert into a cost matrix.
+    cost = -np.log(df_no_zero)
+
+    # Algorithm to find least cost matching of drivers to positions.
+    row_ind, col_ind = linear_sum_assignment(cost)
+
+    # Extract driver abbreviation / position pairs from df.
+    grid = pd.DataFrame({
+        "Driver": df.index[row_ind],
+        "SimPosition":  df.columns[col_ind]
+        })
+    
+    return grid.set_index('Driver').sort_values('SimPosition', ascending=True)
+
+
+
+

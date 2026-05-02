@@ -18,7 +18,6 @@ This application simulates Formula 1 qualifying sessions using real session data
 
 - Each simulation runs Q1, Q2 and Q3, with eliminations at each stage.
 - Supports every Grand Prix from 2018 to present.
-- Automatically generates visualisations with team colours.
 """)
 
 
@@ -32,6 +31,7 @@ st.markdown("""
   - **Q1** – The slowest 5 (or 6 in 2026) drivers are eliminated. Their finishing position here becomes their starting position for the race. The remaining drivers progress to Q2.
   - **Q2** – Same format as Q1. The fastest 10 drivers make it into Q3, while eliminated drivers have their positions set.
   - **Q3** – The final shootout that determines the top 10 starting order. The fastest driver starts on pole.
+- The simulated results calculates the most likely finishing order from the repeated simulations.
 """)
 
 st.divider()
@@ -45,6 +45,7 @@ st.divider()
 
 st.subheader("What you can explore")
 
+st.markdown("- Look at the simulated results to see the most likely results from the repeated simulations.")
 st.markdown("- The numerical probabilities of any driver qualifying in any position.")
 st.markdown("- How each driver qualifies over thousands of simulations.")
 st.markdown("- Explore each grid position and which drivers are the most likely to occupy it.")
@@ -56,16 +57,22 @@ st.subheader("Assumptions and limitations")
 st.markdown("- Lap times are normally distributed.")
 st.markdown("- Limited to 2018 onwards as previous data is unavailable.")
 st.markdown("- Drivers who progressed into a session in a simulation that they did not reach in real life are given an averaged improved lap from the previous session.")
-st.markdown("- Assumes independence between laps.")
-st.markdown("- No external factors (weather, track evolution etc) are considered.")
+st.markdown("- Zero probabilities are converted to 0.000001 in order to simulate the grid.")
+
 st.divider()
 
 st.subheader("About")
 
 st.markdown("- Built using Python, FastF1, Plotly and Streamlit.")
 st.markdown("- Entirely my own work as a Data Science project.")
-st.markdown("- Check this app out on GitHub to see what makes it tick: https://github.com/stuart-n-wilson/F1-Qualifying-Monte-Carlo-Simulator")
 st.markdown("- Feel free to get in touch here (I am actively looking for Junior Data Science roles...): https://www.linkedin.com/in/stuart-n-wilson/")
+
+st.divider()
+
+st.subheader("Coming soon")
+st.markdown("- LLM integration")
+st.markdown("- Video walkthrough")
+st.markdown("- Probably more maths")
 
 
 st.divider()
